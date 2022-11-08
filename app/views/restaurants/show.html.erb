@@ -1,0 +1,17 @@
+<div class="container mt-3">
+  <h1><%= @restaurant.name %></h1>
+  <p><%= @restaurant.address %></p>
+  <p class='d-flex'>
+    <% @restaurant.rating.times do %>
+      <i class="fa-solid fa-star"></i>
+    <% end %>
+    <% (5 - @restaurant.rating).times do %>
+      <i class="fa-regular fa-star"></i>
+    <% end %>
+  </p>
+  <p><%= link_to 'Home', restaurants_path, class: 'btn btn-light' %>
+    <%= link_to restaurant_path(@restaurant), data: { turbo_method: 'delete', turbo_confirm: "Delete #{@restaurant.name}?" }, class: 'btn btn-light' do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </p>
+</div>
