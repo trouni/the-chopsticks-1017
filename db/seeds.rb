@@ -13,6 +13,7 @@ chefs.shuffle.each do |name|
     address: Faker::Address.street_address,
     rating: rand(1..5),
     category: categories.delete_at(rand(0...categories.length)),
+    description: Faker::Restaurant.description,
     chef_name: name
   )
 end
