@@ -1,4 +1,6 @@
 puts 'Removing the restaurants...'
+require 'faker'
+
 Restaurant.destroy_all
 
 chefs = ['Joyce', 'Ayhem', 'Kaho', 'Clement', 'Christopher', 'Tashika', 'Fred', 'Sho', 'Will', 'Sammy', 'Yumi', 'Sunny', 'Patrik', 'Yulia', 'Tom', 'Hafid', 'Mo', 'Patrick', 'Soren', 'Erika', 'Alex', 'Mattias', 'Savi', 'Keita']
