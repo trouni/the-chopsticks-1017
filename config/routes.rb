@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # get '/restaurants/top', to: 'restaurants#top', as: :top_restaurants
 
   resources :restaurants do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [:create]
   end
   resources :reviews, only: [:destroy]
 end

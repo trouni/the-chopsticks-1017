@@ -1,0 +1,5 @@
+<div class="p-3 text-center">
+  <%= render 'reviews/stars', rating: review.rating %>
+  <p><i class="fa-solid fa-quote-left"></i> <%= review.content %></p>
+  <p><small><%= time_ago_in_words(review.created_at) %> ago</small></p>
+</div>

@@ -1,0 +1,15 @@
+<%# <div data-action="event->controller-name#action"></div> %>
+<%#= image_tag url, data: { action: "event->controller-name#action" } %>
+<%= simple_form_for [restaurant, review], html: {
+  data: {
+    action: "submit->insert-in-list#submit"
+  }
+} do |f| %>
+  <div class="star-rating mb-4">
+    <% 5.times do |i| %>
+      <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+    <% end %>
+  </div>
+  <%= f.input :content, label: false %>
+  <%= f.submit 'Submit', class: 'btn btn-primary mt-2' %>
+<% end %>

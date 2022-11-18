@@ -1,6 +1,5 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://source.unsplash.com/featured/?<%= @restaurant.category.downcase %>&<%= rand(1000) %>/800x333);">
-  <div class="container">
-  </div>
+  <div class="container"></div>
 </div>
 <div class="container mt-2">
   <div class="row justify-content-around">
@@ -11,28 +10,25 @@
       <div class="d-flex align-items-center">
         <h1 class="m-0"><%= @restaurant.name %></h1>
         <p class="m-0 ms-2" style="font-size: 0.8em">
-          <% @restaurant.rating.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          <% (5 - @restaurant.rating).times do %>
-            <i class="far fa-star"></i>
+          <% if @restaurant.avg_rating %>
+            <%= render 'reviews/stars', rating: @restaurant.avg_rating %>
+          <% else %>
+            No ratings yet
           <% end %>
         </p>
       </div>
       <p class="fw-lighter opacity-75 mt-2"><%= @restaurant.description  %></p>
-      <h3>Reviews <%= link_to '+', new_restaurant_review_path(@restaurant) %></h3>
-      <ul>
-        <% if @restaurant.reviews.any? %>
-          <% @restaurant.reviews.each do |review| %>
-            <li>
-              <%= review.content %>
-              <%= link_to 'x', review_path(review), data: { turbo_method: 'delete', turbo_confirm: 'Delete Review?' }  %>
-            </li>
+      <h3>Reviews</h3>
+      <div data-controller="insert-in-list">
+        <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
+        <ul data-insert-in-list-target="itemsList">
+          <% if @restaurant.reviews.any? %>
+            <%= render @restaurant.reviews.order(created_at: :desc) %>
+          <% else %>
+            <li>No reviews yet</li>
           <% end %>
-        <% else %>
-          <li>No reviews yet</li>
-        <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
     <div class="col-12 col-sm-4 mt-5">
       <%= render 'restaurants/side_info' %>

@@ -4,4 +4,10 @@ class Restaurant < ApplicationRecord
   # validations
   validates :name, presence: true
   validates :address, presence: true
+
+  def avg_rating
+    return unless reviews.any?
+
+    reviews.average(:rating).round
+  end
 end
